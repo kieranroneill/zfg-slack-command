@@ -1,8 +1,13 @@
+import axios from 'axios';
 import bodyParser from 'body-parser';
 import express from 'express';
 import serverless from 'serverless-http';
 
 const app = express();
+const giphyToken = 'KBmLdv8V8AEpVfn7WxXpUvddTGh3WRcV';
+const slackToken = 'cff5TL3XLwboeZD5aPhyvEdB';
+
+axios.defaults.validateStatus = status => status >= 200 && status < 400;
 
 //====================================================
 // Middleware.
@@ -15,14 +20,20 @@ app.use(bodyParser.json());
 //====================================================
 
 app.post('/zfg', (request, response, next) =>  {
-    if (!request.body.token || request.body.token !== process.env.SLACK_TOKEN) {
-        return next({ status: 401, message: 'Invalid token.' });
+    if (!request.body.token || request.body.token !== slackToken) {
+        return next({ status: 403, message: 'Invalid token.' });
     }
 
-    response.json({
-        response_type: 'in_channel',
-        text: `Mmmmm... Testy!`
-    });
+    axios.get(`https://api.giphy.com/v1/gifs/search?api_key=${giphyToken}&q=zero+fucks+given&limit=100&offset=0&rating=R&lang=en`)
+        .then(result => {
+            const item = result.data.data[Math.floor(Math.random() * result.data.data.length)];
+
+            response.json({
+                response_type: 'in_channel',
+                attachments: [{ title: 'Zero fucks given', image_url: item.images.fixed_width.url }]
+            });
+        })
+        .catch(() => next({ status: 400, message: 'Giphy API made a boo, boo.' }));
 });
 
 //====================================================

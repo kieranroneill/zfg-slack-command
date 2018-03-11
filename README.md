@@ -2,7 +2,7 @@
 
 # Slack `/zfg` command
 
-Type `/zfg` and give zero f*cks...
+A custom Slack command that allows you to express how much you give zero f*cks...
 
 #### Table Of Contents
 
