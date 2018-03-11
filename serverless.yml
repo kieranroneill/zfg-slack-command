@@ -5,9 +5,21 @@ plugins:
 
 provider:
   name: aws
-  region: eu-west-2
   runtime: nodejs6.10
-  stage: dev
+  stage: sandbox
+  region: eu-west-2
+  deploymentBucket:
+      name: sandbox.zfg.element43.xyz
+
+package:
+  exclude:
+    - '*'
+    - .git/**
+    - .idea/**
+    - src/**
+    - test/**
+    - '!dist/**'
+  excludeDevDependencies: true
 
 functions:
   zfg:

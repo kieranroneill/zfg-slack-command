@@ -19,6 +19,7 @@
   },
   "scripts": {
     "build": "babel src -d dist --ignore test.js",
+    "deploy": "cross-env NODE_ENV=\"production\" npm run build && serverless deploy --verbose",
     "lint": "eslint --fix --ext .js .",
     "start": "cross-env NODE_ENV=\"development\" npm run build && serverless offline start --port 1337 --host 0.0.0.0",
     "test": "cross-env NODE_ENV=\"test\" mocha './src/**/*.test.js'"
