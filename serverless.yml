@@ -1,0 +1,19 @@
+service: zfg-slack-command
+
+plugins:
+  - serverless-offline
+
+provider:
+  name: aws
+  region: eu-west-2
+  runtime: nodejs6.10
+  stage: dev
+
+functions:
+  zfg:
+    name: zfg
+    description: Type `/zfg` and give zero f*cks...
+    handler: dist/app.handler
+    events:
+      - http: ANY /
+      - http: 'ANY {proxy+}'
