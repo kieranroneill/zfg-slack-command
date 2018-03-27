@@ -2,7 +2,7 @@
 
 # Slack `/zfg` command
 
-A custom Slack command that allows you to express how much you give zero f*cks...
+A custom Slack command that allows you to _express_ (ho, ho, ho... pun intended) how you give zero f*cks...
 
 #### Table Of Contents
 
@@ -23,7 +23,7 @@ In order to get started, you will need:
 
 1. Install the dependencies using `yarn install`
 2. Run `yarn start`
-3. Navigate to [http://localhost:1337](http://localhost:1337)
+3. Server[less] should be running on [http://localhost:1337](http://localhost:1337)
 
 ## Testing
 
